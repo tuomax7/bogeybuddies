@@ -26,6 +26,9 @@
           "appId": "dmb1mxbpurzxl",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "bogeybuddies0545ad9e": {}
       }
     }
   }

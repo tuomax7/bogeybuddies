@@ -1,3 +1,4 @@
+import React, {FC} from 'react'
 import type { Metadata } from "next";
 import "./globals.css";
 import { Amplify } from 'aws-amplify'
@@ -9,10 +10,16 @@ export const metadata: Metadata = {
   description: "An app for tracking amateur golf rivalries.",
 };
 
-const RootLayout = ({children}: Readonly<{children: React.ReactNode}>) => {
+interface LayOutProps {
+	children:  React.ReactNode;
+}
+
+const RootLayout: FC<LayOutProps> = ({children}) => {
   return (
     <html lang="en">
-      <body className='flex justify-center'>{children}</body>
+      <body className='flex justify-center'>
+					{children}
+			</body>
     </html>
   );
 }

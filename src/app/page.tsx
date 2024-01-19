@@ -3,6 +3,8 @@
 import React, { useEffect, useState, FC } from 'react'
 import { get } from 'aws-amplify/api';
 import { Amplify } from 'aws-amplify'
+import { withAuthenticator, WithAuthenticatorProps } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 import awsExports from '../aws-exports'
 Amplify.configure(awsExports);
 
@@ -14,10 +16,10 @@ interface Round {
 	roundName: string;
 }
 
-const App = () => {
+const App = ({ signOut, user }: WithAuthenticatorProps) => {
+
   const [input, setInput] = useState<string>("")
   const [rounds, setRounds] = useState<Round[]>([])
-
 
   const getRoundById = async (e: { input: string; })  => {
     let roundId = e.input
@@ -41,25 +43,27 @@ const App = () => {
   }
 
   return (
-    
-    <div className='flex flex-col'>
-      <h1 className='text-2xl text-center'>Golf app backend template</h1>
-      <div className='py-2'>
-          <input className='w-full border-2' placeholder="round id" type="text" value={input} onChange={(e) => setInput(e.target.value)}/>      
-      </div>
-      <button className='w-full border-2' onClick={() => getRoundById({input})}>Get Round From Backend</button>
+				<div className='flex flex-col'>
+					<button onClick={signOut}>Sign out</button>
+					<h1 className='text-2xl text-center'>Golf app backend template</h1>
+					<div className='py-2'>
+							<input className='w-full border-2' placeholder="round id" type="text" value={input} onChange={(e) => setInput(e.target.value)}/>      
+					</div>
+					<button className='w-full border-2' onClick={() => getRoundById({input})}>Get Round From Backend</button>
 
-      <h2 className='text-xl' style={{visibility: rounds.length > 0 ? 'visible' : 'hidden' }}>Round responses</h2>
-      {
-       rounds.map((thisRound, index) => {
-         return (
-        <div key={thisRound.roundId}>
-          <span><b>roundId:</b> {thisRound.roundId} - <b>Roundname</b>: {thisRound.roundName}</span>
-        </div>)
-       })
-      }
-    </div>
+					<h2 className='text-xl' style={{visibility: rounds.length > 0 ? 'visible' : 'hidden' }}>Round responses</h2>
+					{
+						rounds.map((thisRound, index) => {
+							return (
+								<div key={thisRound.roundId}>
+									<span><b>roundId:</b> {thisRound.roundId} - <b>Roundname</b>: {thisRound.roundName}</span>
+								</div>)
+						})
+					}
+			</div>
+
+    
   )
 }
 
-export default App;
+export default withAuthenticator(App);
