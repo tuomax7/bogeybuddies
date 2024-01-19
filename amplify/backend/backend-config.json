@@ -1,0 +1,43 @@
+{
+  "api": {
+    "api7c1751eb": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "RoundHandler"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "RoundHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_RoundHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "RoundHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_RoundHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "RoundHandler"
+        }
+      ]
+    }
+  }
+}

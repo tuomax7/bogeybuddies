@@ -1,0 +1,17 @@
+{
+  "projectName": "bogeybuddies",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "bogeybuddies-front/src",
+      "DistributionDir": "bogeybuddies-front/.next",
+      "BuildCommand": "cd bogeybuddies-front && npm run build",
+      "StartCommand": "cd bogeybuddies-front && npm start"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}

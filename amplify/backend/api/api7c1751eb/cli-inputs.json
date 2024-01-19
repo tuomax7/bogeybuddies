@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/rounds/{roundId}": {
+      "name": "/rounds/{roundId}",
+      "lambdaFunction": "RoundHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

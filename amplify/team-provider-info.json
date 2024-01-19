@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bogeybuddies-dev-144008-authRole",
+      "UnauthRoleArn": "arn:aws:iam::684011301033:role/amplify-bogeybuddies-dev-144008-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::684011301033:role/amplify-bogeybuddies-dev-144008-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
+      "UnauthRoleName": "amplify-bogeybuddies-dev-144008-unauthRole",
+      "StackName": "amplify-bogeybuddies-dev-144008",
+      "StackId": "arn:aws:cloudformation:eu-north-1:684011301033:stack/amplify-bogeybuddies-dev-144008/e249f970-b6c7-11ee-9cb8-0afe5f77460e",
+      "AmplifyAppId": "dmb1mxbpurzxl"
+    },
+    "categories": {
+      "function": {
+        "RoundHandler": {
+          "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
+          "s3Key": "amplify-builds/RoundHandler-76576165697a524e4a52-build.zip"
+        }
+      },
+      "api": {
+        "api7c1751eb": {}
+      }
+    }
+  }
+}
