@@ -1,6 +1,6 @@
 {
   "api": {
-    "api7c1751eb": {
+    "bogeybuddiesAPI": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "RoundHandler"
+          "resourceName": "roundsLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -44,8 +44,22 @@
     }
   },
   "function": {
-    "RoundHandler": {
+    "roundsLambda": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "roundsTable"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
@@ -58,19 +72,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_RoundHandler_deploymentBucketName": {
+    "AMPLIFY_function_roundsLambda_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "RoundHandler"
+          "resourceName": "roundsLambda"
         }
       ]
     },
-    "AMPLIFY_function_RoundHandler_s3Key": {
+    "AMPLIFY_function_roundsLambda_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "RoundHandler"
+          "resourceName": "roundsLambda"
         }
       ]
     },
@@ -89,6 +103,12 @@
           "resourceName": "amplifyhosting"
         }
       ]
+    }
+  },
+  "storage": {
+    "roundsTable": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }

@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "api7c1751eb": {
+    "bogeybuddiesAPI": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
@@ -18,12 +18,22 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "RoundHandler": {
+    "roundsLambda": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
+    }
+  },
+  "storage": {
+    "roundsTable": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "StreamArn": "string"
     }
   }
 }

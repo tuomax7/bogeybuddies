@@ -5,8 +5,8 @@ const awsmobile = {
     "aws_project_region": "eu-north-1",
     "aws_cloud_logic_custom": [
         {
-            "name": "api7c1751eb",
-            "endpoint": "https://hpj6id2k79.execute-api.eu-north-1.amazonaws.com/dev",
+            "name": "bogeybuddiesAPI",
+            "endpoint": "https://pnirxjxbrb.execute-api.eu-north-1.amazonaws.com/dev",
             "region": "eu-north-1"
         }
     ],
@@ -32,6 +32,13 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
+    ],
+    "aws_dynamodb_all_tables_region": "eu-north-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "roundsTable-dev",
+            "region": "eu-north-1"
+        }
     ]
 };
 

@@ -1,0 +1,10 @@
+{
+  "resourceName": "roundsTable",
+  "tableName": "roundsTable",
+  "partitionKey": {
+    "fieldName": "RID",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

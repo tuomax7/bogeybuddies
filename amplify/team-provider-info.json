@@ -13,13 +13,10 @@
     },
     "categories": {
       "function": {
-        "RoundHandler": {
+        "roundsLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
-          "s3Key": "amplify-builds/RoundHandler-76576165697a524e4a52-build.zip"
+          "s3Key": "amplify-builds/roundsLambda-396e7a43335a2f4c3671-build.zip"
         }
-      },
-      "api": {
-        "api7c1751eb": {}
       },
       "hosting": {
         "amplifyhosting": {
@@ -29,6 +26,12 @@
       },
       "auth": {
         "bogeybuddies0545ad9e": {}
+      },
+      "api": {
+        "bogeybuddiesAPI": {}
+      },
+      "storage": {
+        "roundsTable": {}
       }
     }
   }
