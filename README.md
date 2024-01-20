@@ -1,5 +1,7 @@
 ## Getting Started
 
+This branch contains the live version-ready app.
+
 First, run the development server:
 
 ```bash
