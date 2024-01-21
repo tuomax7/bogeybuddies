@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, FC } from "react";
-import { get } from "aws-amplify/api";
-import apiName from "@/apiName";
-import { Round } from "@/types";
+import React, { useEffect, useState, FC } from 'react';
+import { get } from 'aws-amplify/api';
+import apiName from '@/apiName';
+import { Round } from '@/types';
 
 const RoundPage = ({ params }: { params: { RID: string } }) => {
   const roundId = params.RID;
@@ -13,7 +13,7 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
     try {
       const getRound = get({
         apiName,
-        path: `/rounds/${roundId}`,
+        path: `/rounds/${roundId}`
       });
 
       const { body } = await getRound.response;
@@ -23,7 +23,7 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
       const round = json[0] as Round;
       setRound(round);
     } catch (error) {
-      console.log("GET call failed: ", error);
+      console.log('GET call failed: ', error);
     }
   };
 
@@ -36,7 +36,7 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
     <div>
       {round && (
         <div>
-          <h2 className="text-xl">
+          <h2 className='text-xl'>
             {round.course} on {round.date}
           </h2>
         </div>

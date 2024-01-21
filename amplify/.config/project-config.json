@@ -11,7 +11,5 @@
       "StartCommand": "cd bogeybuddies-front && npm start"
     }
   },
-  "providers": [
-    "awscloudformation"
-  ]
+  "providers": ["awscloudformation"]
 }
