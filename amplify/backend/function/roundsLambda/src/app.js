@@ -3,6 +3,7 @@ const { DeleteCommand, DynamoDBDocumentClient, GetCommand, PutCommand, QueryComm
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const express = require('express')
+const { v4: uuidv4 } = require('uuid');
 
 const ddbClient = new DynamoDBClient({ region: process.env.TABLE_REGION });
 const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
@@ -27,6 +28,11 @@ const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
 const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
+
+
+
+
+
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
@@ -179,7 +185,10 @@ app.post(path, async function(req, res) {
 
   let putItemParams = {
     TableName: tableName,
-    Item: req.body
+    Item: {
+			RID: uuidv4(),
+			...req.body
+		}
   }
   try {
     let data = await ddbDocClient.send(new PutCommand(putItemParams));
