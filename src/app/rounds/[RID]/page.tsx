@@ -19,12 +19,8 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
       const { body } = await getRound.response;
       const json = await body.json();
       // @ts-ignore
-      const addedRound = json[0];
+      const round = json[0] as Round;
 
-      const round = {
-        ...addedRound,
-        scores: JSON.parse(addedRound.scores)
-      } as Round;
       setRound(round);
     } catch (error) {
       console.log('GET call failed: ', error);

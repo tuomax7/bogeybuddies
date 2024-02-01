@@ -35,7 +35,7 @@ const App = () => {
 
     try {
       const sortedScores = [...scoresInput].sort((s1, s2) => s2.points - s1.points);
-      const postRound = await post({
+      await post({
         apiName,
         path: '/rounds',
         options: {
@@ -46,9 +46,6 @@ const App = () => {
           }
         }
       });
-
-      // const { body } = await postRound.response;
-      // const json = await body.json();
 
       setCourseNameInput('');
       setRoundDateInput('');
