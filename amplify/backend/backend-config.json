@@ -9,6 +9,14 @@
           ],
           "category": "function",
           "resourceName": "roundsLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "rivalriesLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -44,6 +52,25 @@
     }
   },
   "function": {
+    "rivalriesLambda": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "rivalriesTable"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "roundsLambda": {
       "build": true,
       "dependsOn": [
@@ -72,6 +99,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_rivalriesLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rivalriesLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_rivalriesLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rivalriesLambda"
+        }
+      ]
+    },
     "AMPLIFY_function_roundsLambda_deploymentBucketName": {
       "usedBy": [
         {
@@ -106,6 +149,10 @@
     }
   },
   "storage": {
+    "rivalriesTable": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "roundsTable": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"

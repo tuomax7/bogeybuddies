@@ -18,6 +18,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "rivalriesLambda": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "roundsLambda": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
@@ -27,6 +34,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
+    "rivalriesTable": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "StreamArn": "string"
+    },
     "roundsTable": {
       "Arn": "string",
       "Name": "string",

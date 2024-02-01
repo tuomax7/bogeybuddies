@@ -16,6 +16,10 @@
         "roundsLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
           "s3Key": "amplify-builds/roundsLambda-6359446f526968344337-build.zip"
+        },
+        "rivalriesLambda": {
+          "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
+          "s3Key": "amplify-builds/rivalriesLambda-52363865704c4f584958-build.zip"
         }
       },
       "hosting": {
@@ -31,7 +35,8 @@
         "bogeybuddiesAPI": {}
       },
       "storage": {
-        "roundsTable": {}
+        "roundsTable": {},
+        "rivalriesTable": {}
       }
     }
   }

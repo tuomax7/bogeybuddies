@@ -1,0 +1,10 @@
+{
+  "resourceName": "rivalriesTable",
+  "tableName": "rivalriesTable",
+  "partitionKey": {
+    "fieldName": "RivID",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
