@@ -13,3 +13,10 @@ export interface Round {
     points: number;
   }[];
 }
+
+export interface Rivalry {
+  RivID: string;
+  name: string;
+  players: string[];
+  rounds: string[];
+}

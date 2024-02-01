@@ -2,10 +2,7 @@
 
 import React, { FC } from 'react';
 import Link from 'next/link';
-// import { Amplify } from 'aws-amplify';
 import { signOut } from 'aws-amplify/auth';
-// import awsExports from '../aws-exports';
-// mplify.configure(awsExports);
 
 const NavBar: FC = () => {
   return (
@@ -15,6 +12,9 @@ const NavBar: FC = () => {
       </h1>
       <Link href='/' className='text-xl'>
         Home
+      </Link>
+      <Link href='/rivalries' className='text-xl'>
+        Rivalries
       </Link>
       <Link href='/rounds' className='text-xl'>
         Rounds
