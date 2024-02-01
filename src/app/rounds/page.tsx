@@ -32,13 +32,14 @@ const RoundsPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className='text-xl'>Rounds</h1>
+    <div className='space-y-2'>
+      <h1 className='text-2xl'>Rounds</h1>
+      {rounds.length <= 0 && <p>Loading rounds...</p>}
       <table>
         <tbody>
           {rounds.map(round => (
             <tr key={round.RID}>
-              <td>
+              <td className=' border-4 odd:bg-green-300 even:text-black p-4 rounded-lg'>
                 <Link href={`/rounds/${round.RID}`}>
                   {round.course} on {round.date}
                 </Link>

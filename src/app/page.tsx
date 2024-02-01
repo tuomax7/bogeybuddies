@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useEffect, useState, FC, SyntheticEvent } from 'react';
-import { useAuthenticator } from '@aws-amplify/ui-react';
-
 import { post } from 'aws-amplify/api';
 import apiName from '../apiName';
 
@@ -13,8 +11,6 @@ interface ScoreInput {
 }
 
 const App = () => {
-  const { user } = useAuthenticator(context => [context.user]);
-
   const [courseNameInput, setCourseNameInput] = useState<string>('');
   const [roundDateInput, setRoundDateInput] = useState<string>('');
   const [nameInput, setNameInput] = useState<string>('');
@@ -32,7 +28,6 @@ const App = () => {
     setScoresInput(scoresInput.concat(newScore));
     setNameInput('');
     setPointsInput('');
-    console.log(scoresInput);
   };
 
   const handleSubmit = async (e: SyntheticEvent) => {
@@ -110,7 +105,7 @@ const App = () => {
             className='border-2'
           />
 
-          <button className='p-2 border-2 bg-slate-200' onClick={handleScoreSubmit}>
+          <button className='p-2 border-2 bg-green-200' onClick={handleScoreSubmit}>
             Add score
           </button>
         </div>
@@ -126,7 +121,7 @@ const App = () => {
           </div>
         )}
 
-        <button type='submit' className='p-2 border-2 bg-slate-400'>
+        <button type='submit' className='p-2 border-2 bg-green-800 text-white '>
           Submit
         </button>
       </form>

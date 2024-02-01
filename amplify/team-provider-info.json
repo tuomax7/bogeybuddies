@@ -15,7 +15,7 @@
       "function": {
         "roundsLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
-          "s3Key": "amplify-builds/roundsLambda-64397a737137747a4e7a-build.zip"
+          "s3Key": "amplify-builds/roundsLambda-6c6942635a6530774443-build.zip"
         }
       },
       "hosting": {

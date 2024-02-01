@@ -10,6 +10,8 @@ import { Authenticator } from '@aws-amplify/ui-react';
 import awsExports from '../aws-exports';
 Amplify.configure(awsExports);
 
+import NavBar from '@/components/NavBar';
+
 interface LayOutProps {
   children: React.ReactNode;
 }
@@ -17,23 +19,13 @@ interface LayOutProps {
 const RootLayout: FC<LayOutProps> = ({ children }) => {
   return (
     <html lang='en'>
+      <head>
+        <title>BogeyBuddies</title>
+      </head>
       <body>
         <Authenticator className='my-10'>
           <div className='flex flex-col w-full justify-center items-center space-y-4'>
-            <div className='flex flex-row bg-slate-500 text-white w-full p-4 space-x-4'>
-              <h1 className='text-2xl flex-grow'>
-                <Link href='/'>BogeyBuddies</Link>
-              </h1>
-              <Link href='/' className='text-xl'>
-                Home
-              </Link>
-              <Link href='/rounds' className='text-xl'>
-                Rounds
-              </Link>
-              <button onClick={() => signOut()} className='border-2 p-2'>
-                Sign out
-              </button>
-            </div>
+            <NavBar />
             {children}
           </div>
         </Authenticator>
