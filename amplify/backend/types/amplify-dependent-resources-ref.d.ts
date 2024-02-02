@@ -18,6 +18,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "bogeybuddies0545ad9ePreSignup": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "rivalriesLambda": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
@@ -26,6 +33,13 @@ export type AmplifyDependentResourcesAttributes = {
       "Region": "string"
     },
     "roundsLambda": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
+    "usersLambda": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -43,6 +57,14 @@ export type AmplifyDependentResourcesAttributes = {
       "StreamArn": "string"
     },
     "roundsTable": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "StreamArn": "string"
+    },
+    "usersTable": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",

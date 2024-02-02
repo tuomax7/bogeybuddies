@@ -1,11 +1,9 @@
 'use client';
 
 import React, { FC } from 'react';
-import Link from 'next/link';
 import './globals.css';
 import '@aws-amplify/ui-react/styles.css';
 import { Amplify } from 'aws-amplify';
-import { signOut } from 'aws-amplify/auth';
 import { Authenticator } from '@aws-amplify/ui-react';
 import awsExports from '../aws-exports';
 Amplify.configure(awsExports);

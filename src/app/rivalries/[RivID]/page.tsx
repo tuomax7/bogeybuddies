@@ -38,11 +38,13 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
           <p className='text-xl'>{rivalry.players.join(', ')}</p>
           <table>
             <thead>
-              <th>Round</th>
-              <th>Date</th>
-              {rivalry.players.map(player => (
-                <th key={player}>{player}</th>
-              ))}
+              <tr>
+                <th>Round</th>
+                <th>Date</th>
+                {rivalry.players.map(player => (
+                  <th key={player}>{player}</th>
+                ))}
+              </tr>
             </thead>
             <tbody>
               {rounds.map(round => (
@@ -53,7 +55,7 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
                   <td className='p-4'>{dateToReadable(round.date)}</td>
                   {round.scores.map(
                     score =>
-                      rivalry.players.includes(score.name) && (
+                      rivalry.players.includes(score.uuid) && (
                         <td className='p-4' key={score.uuid}>
                           {score.points}
                         </td>

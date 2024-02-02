@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useEffect, useState, FC, SyntheticEvent } from 'react';
-import { post } from 'aws-amplify/api';
-import apiName from '../apiName';
 import { ScoreInput } from '@/types';
+import { getCurrentUser } from 'aws-amplify/auth';
 
 import { postRound } from '@/services/roundService';
 
@@ -40,6 +39,19 @@ const App = () => {
       console.log('POST call failed: ', error);
     }
   };
+
+  const currentAuthenticatedUser = async () => {
+    try {
+      const { userId } = await getCurrentUser();
+      console.log(`The userId: ${userId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    currentAuthenticatedUser();
+  });
 
   return (
     <div className='flex flex-col space-y-4 w-96'>
@@ -98,7 +110,7 @@ const App = () => {
             <p className='font-bold'>Added scores</p>
             {scoresInput.map((score, index) => (
               <p key={index}>
-                {score.name}: {score.points}
+                {score.uuid}: {score.points}
               </p>
             ))}
           </div>

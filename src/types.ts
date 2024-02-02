@@ -15,7 +15,6 @@ export interface Round {
   date: string;
   scores: {
     uuid: string;
-    name: string;
     points: number;
   }[];
 }
@@ -25,4 +24,11 @@ export interface Rivalry {
   name: string;
   players: string[];
   rounds: string[];
+}
+
+export interface User {
+  UID: string;
+  email: string;
+  firstname: string;
+  lastname: string;
 }

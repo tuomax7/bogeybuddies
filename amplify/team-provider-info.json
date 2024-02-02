@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-bogeybuddies-dev-144008-unauthRole",
       "StackName": "amplify-bogeybuddies-dev-144008",
       "StackId": "arn:aws:cloudformation:eu-north-1:684011301033:stack/amplify-bogeybuddies-dev-144008/e249f970-b6c7-11ee-9cb8-0afe5f77460e",
-      "AmplifyAppId": "dmb1mxbpurzxl"
+      "AmplifyAppId": "dmb1mxbpurzxl",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-bogeybuddies-dev-144008-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "function": {
@@ -20,6 +21,14 @@
         "rivalriesLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
           "s3Key": "amplify-builds/rivalriesLambda-38674f54716459654533-build.zip"
+        },
+        "usersLambda": {
+          "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
+          "s3Key": "amplify-builds/usersLambda-67774357594b39346659-build.zip"
+        },
+        "bogeybuddies0545ad9ePreSignup": {
+          "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
+          "s3Key": "amplify-builds/bogeybuddies0545ad9ePreSignup-557753686f6755336e61-build.zip"
         }
       },
       "hosting": {
@@ -36,7 +45,8 @@
       },
       "storage": {
         "roundsTable": {},
-        "rivalriesTable": {}
+        "rivalriesTable": {},
+        "usersTable": {}
       }
     }
   }

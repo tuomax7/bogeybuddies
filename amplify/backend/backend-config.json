@@ -17,6 +17,14 @@
           ],
           "category": "function",
           "resourceName": "rivalriesLambda"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "usersLambda"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -26,7 +34,17 @@
   "auth": {
     "bogeybuddies0545ad9e": {
       "customAuth": false,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "bogeybuddies0545ad9ePreSignup",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -52,6 +70,11 @@
     }
   },
   "function": {
+    "bogeybuddies0545ad9ePreSignup": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "rivalriesLambda": {
       "build": true,
       "dependsOn": [
@@ -89,6 +112,25 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "usersLambda": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "usersTable"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "hosting": {
@@ -99,6 +141,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_bogeybuddies0545ad9ePreSignup_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bogeybuddies0545ad9ePreSignup"
+        }
+      ]
+    },
+    "AMPLIFY_function_bogeybuddies0545ad9ePreSignup_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bogeybuddies0545ad9ePreSignup"
+        }
+      ]
+    },
     "AMPLIFY_function_rivalriesLambda_deploymentBucketName": {
       "usedBy": [
         {
@@ -131,6 +189,22 @@
         }
       ]
     },
+    "AMPLIFY_function_usersLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "usersLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_usersLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "usersLambda"
+        }
+      ]
+    },
     "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
@@ -154,6 +228,10 @@
       "service": "DynamoDB"
     },
     "roundsTable": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "usersTable": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

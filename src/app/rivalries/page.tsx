@@ -2,34 +2,35 @@
 
 import React, { useEffect, useState, FC } from 'react';
 import Link from 'next/link';
-import { get } from 'aws-amplify/api';
-import { Rivalry } from '@/types';
-import apiName from '../../apiName';
+import { Rivalry, User } from '@/types';
+
+import { getRivalries } from '@/services/rivalryService';
+import { getUsers } from '@/services/userService';
 
 const RivalriesPage = () => {
   const [rivalries, setRivalries] = useState<Rivalry[]>([]);
+  const [players, setPlayers] = useState<User[]>([]);
 
-  const getRivalries = async () => {
+  const fetchRivalries = async () => {
     try {
-      const getRivalries = get({
-        apiName,
-        path: '/rivalries'
-      });
+      const fetchedRivalries = await getRivalries();
 
-      const { body } = await getRivalries.response;
-      const json = await body.json();
+      const playerUIDs = fetchedRivalries.map(rivalry => rivalry.players).flat();
 
-      // @ts-ignore
-      const rivalries = json as Rivalry[];
-      setRivalries(rivalries);
+      const users = await getUsers(playerUIDs);
+
+      setPlayers(users);
+      setRivalries(fetchedRivalries);
     } catch (error) {
       console.log('GET call failed: ', error);
     }
   };
 
   useEffect(() => {
-    getRivalries();
+    fetchRivalries();
   }, []);
+
+  console.log(players);
 
   return (
     <div className='space-y-2'>

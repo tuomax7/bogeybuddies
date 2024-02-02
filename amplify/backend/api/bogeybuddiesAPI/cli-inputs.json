@@ -14,6 +14,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/users": {
+      "name": "/users",
+      "lambdaFunction": "usersLambda",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

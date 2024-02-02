@@ -2,22 +2,38 @@
 
 import React, { useEffect, useState, FC } from 'react';
 import Link from 'next/link';
-import { Round } from '@/types';
+import { Round, User } from '@/types';
 import { getRounds } from '@/services/roundService';
+import { getUserByUID } from '@/services/userService';
 
 import { dateToReadable } from '@/utils';
 
-const uuid = 'Tuomas';
+import { getCurrentUser } from 'aws-amplify/auth';
 
 const RoundsPage = () => {
+  const [user, setUser] = useState<User>();
   const [rounds, setRounds] = useState<Round[]>([]);
 
-  const getScore = (round: Round) => round.scores.find(score => score.uuid === uuid);
+  const getScore = (round: Round) => round.scores.find(score => score.uuid === user?.UID);
+
+  const getUserRounds = async () => {
+    try {
+      const { userId } = await getCurrentUser();
+
+      const user = await getUserByUID(userId);
+
+      const rounds = await getRounds([userId]);
+
+      setUser(user);
+      setRounds(rounds);
+      console.log(`The userId: ${userId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-    getRounds([uuid]) // NEEDS TO BE REPLACED WITH CURRENT USER UUID
-      .then(data => setRounds(data))
-      .catch(e => console.log(`ERROR: ${e}`));
+    getUserRounds();
   }, []);
 
   return (

@@ -42,7 +42,7 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
                 return (
                   <tr key={index} className='  odd:bg-green-300 even:text-black p-4 rounded-lg'>
                     <td className='whitespace-nowrap px-6 py-4 font-medium'>{index + 1}</td>
-                    <td className='whitespace-nowrap px-6 py-4'>{score.name}</td>
+                    <td className='whitespace-nowrap px-6 py-4'>{score.uuid}</td>
                     <td className='whitespace-nowrap px-6 py-4'>{score.points}</td>
                   </tr>
                 );

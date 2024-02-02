@@ -11,7 +11,7 @@
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationMessage": "Your BogeyBuddies signup verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -26,7 +26,7 @@
     "sharedId": "0545ad9e",
     "resourceName": "bogeybuddies0545ad9e",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "useDefault": "manual",
     "usernameAttributes": ["email"],
     "userPoolGroupList": [],
     "serviceName": "Cognito",
@@ -39,6 +39,26 @@
       "Fn::GetAtt": ["UnauthRole", "Arn"]
     },
     "breakCircularDependency": true,
-    "dependsOn": []
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "bogeybuddies0545ad9ePreSignup",
+        "triggerProvider": "Cognito",
+        "attributes": ["Arn", "Name"]
+      }
+    ],
+    "thirdPartyAuth": false,
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {
+      "PreSignup": ["custom"]
+    },
+    "hostedUI": false,
+    "authProviders": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"bogeybuddies0545ad9ePreSignup\"\n  }\n]"
   }
 }
