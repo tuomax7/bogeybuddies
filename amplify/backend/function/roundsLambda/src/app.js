@@ -14,42 +14,19 @@ if (process.env.ENV && process.env.ENV !== 'NONE') {
   tableName = tableName + '-' + process.env.ENV;
 }
 
-const userIdPresent = false; // TODO: update in case is required to use that definition
-const partitionKeyName = 'RID';
-const partitionKeyType = 'S';
-const UNAUTH = 'UNAUTH';
-const hashKeyPath = '/:' + partitionKeyName;
-
 // declare a new express app
 const app = express();
 app.use(bodyParser.json());
 app.use(awsServerlessExpressMiddleware.eventContext());
 
-// Enable CORS for all methods
-/*
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});*/
 app.use(cors());
-
-// convert url string param to expected Type
-const convertUrlType = (param, type) => {
-  switch (type) {
-    case 'N':
-      return Number.parseInt(param);
-    default:
-      return param;
-  }
-};
 
 /************************************
  * HTTP Get method to list objects *
  ************************************/
 
 app.get('/rounds', async function (req, res) {
-  var params = {
+  const params = {
     TableName: tableName,
     Select: 'ALL_ATTRIBUTES'
   };
@@ -67,28 +44,14 @@ app.get('/rounds', async function (req, res) {
  * HTTP Get method to query objects *
  ************************************/
 
-app.get('/rounds' + hashKeyPath, async function (req, res) {
+app.get('/rounds/:RID', async function (req, res) {
   const condition = {};
-  condition[partitionKeyName] = {
-    ComparisonOperator: 'EQ'
+  condition['RID'] = {
+    ComparisonOperator: 'EQ',
+    AttributeValueList: [req.params.RID]
   };
 
-  if (userIdPresent && req.apiGateway) {
-    condition[partitionKeyName]['AttributeValueList'] = [
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-    ];
-  } else {
-    try {
-      condition[partitionKeyName]['AttributeValueList'] = [
-        convertUrlType(req.params[partitionKeyName], partitionKeyType)
-      ];
-    } catch (err) {
-      res.statusCode = 500;
-      res.json({ error: 'Wrong column type ' + err });
-    }
-  }
-
-  let queryParams = {
+  const queryParams = {
     TableName: tableName,
     KeyConditions: condition
   };
@@ -107,10 +70,6 @@ app.get('/rounds' + hashKeyPath, async function (req, res) {
  *************************************/
 
 app.post('/rounds', async function (req, res) {
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
-
   const roundItem = {
     RID: uuidv4(),
     course: req.body.course,
@@ -118,12 +77,12 @@ app.post('/rounds', async function (req, res) {
     scores: JSON.parse(req.body.scores)
   };
 
-  let putItemParams = {
+  const putItemParams = {
     TableName: tableName,
     Item: roundItem
   };
   try {
-    let data = await ddbDocClient.send(new PutCommand(putItemParams));
+    const data = await ddbDocClient.send(new PutCommand(putItemParams));
     res.json({ success: 'post call succeed!', url: req.url, data: data });
   } catch (err) {
     res.statusCode = 500;

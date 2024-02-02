@@ -13,10 +13,10 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
   const fetchRivalryData = async () => {
     try {
       const rivalryData = await getRivalry(rivalryID);
-      console.log(rivalryData);
+      // console.log(rivalryData);
 
       const roundsData = await getRounds();
-      console.log(roundsData);
+      // console.log(roundsData);
 
       setRivalry(rivalryData);
       setRounds(roundsData);

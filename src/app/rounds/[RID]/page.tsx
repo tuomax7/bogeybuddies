@@ -12,8 +12,7 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
     getRound(roundID)
       .then(data => setRound(data))
       .catch(e => console.log(`ERROR: ${e}`));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [roundID]);
 
   return (
     <div>

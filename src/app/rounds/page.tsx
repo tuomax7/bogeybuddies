@@ -14,6 +14,8 @@ const RoundsPage = () => {
       .catch(e => console.log(`ERROR: ${e}`));
   }, []);
 
+  console.log(rounds);
+
   return (
     <div className='space-y-2'>
       <h1 className='text-2xl'>Rounds</h1>

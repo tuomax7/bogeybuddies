@@ -15,11 +15,11 @@
       "function": {
         "roundsLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
-          "s3Key": "amplify-builds/roundsLambda-30697970314732503545-build.zip"
+          "s3Key": "amplify-builds/roundsLambda-484c3243386d4e335764-build.zip"
         },
         "rivalriesLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
-          "s3Key": "amplify-builds/rivalriesLambda-466575336d4c2b2f6c31-build.zip"
+          "s3Key": "amplify-builds/rivalriesLambda-38674f54716459654533-build.zip"
         }
       },
       "hosting": {

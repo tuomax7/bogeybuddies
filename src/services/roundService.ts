@@ -10,6 +10,8 @@ export const getRounds = async () => {
   const { body } = await getRounds.response;
   const json = await body.json();
 
+  console.log(json);
+
   // @ts-ignore
   const rounds = json as Round[];
   return rounds;
