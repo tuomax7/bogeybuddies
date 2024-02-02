@@ -2,33 +2,16 @@
 
 import React, { useEffect, useState, FC } from 'react';
 import Link from 'next/link';
-import { get } from 'aws-amplify/api';
 import { Round } from '@/types';
-import apiName from '../../apiName';
+import { getRounds } from '@/services/roundService';
 
 const RoundsPage = () => {
   const [rounds, setRounds] = useState<Round[]>([]);
 
-  const getRounds = async () => {
-    try {
-      const getRounds = get({
-        apiName,
-        path: '/rounds'
-      });
-
-      const { body } = await getRounds.response;
-      const json = await body.json();
-
-      // @ts-ignore
-      const rounds = json as Round[];
-      setRounds(rounds);
-    } catch (error) {
-      console.log('GET call failed: ', error);
-    }
-  };
-
   useEffect(() => {
-    getRounds();
+    getRounds()
+      .then(data => setRounds(data))
+      .catch(e => console.log(`ERROR: ${e}`));
   }, []);
 
   return (

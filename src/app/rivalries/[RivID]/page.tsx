@@ -1,34 +1,32 @@
 'use client';
 
 import React, { useEffect, useState, FC } from 'react';
-import { get } from 'aws-amplify/api';
-import apiName from '@/apiName';
-import { Rivalry } from '@/types';
+import { Rivalry, Round } from '@/types';
+import { getRivalry } from '@/services/rivalryService';
+import { getRounds } from '@/services/roundService';
 
 const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
   const rivalryID = params.RivID;
   const [rivalry, setRivalry] = useState<Rivalry>();
+  const [rounds, setRounds] = useState<Round[]>([]);
 
-  const getRivalry = async () => {
+  const fetchRivalryData = async () => {
     try {
-      const getRivalry = get({
-        apiName,
-        path: `/rivalries/${rivalryID}`
-      });
+      const rivalryData = await getRivalry(rivalryID);
+      console.log(rivalryData);
 
-      const { body } = await getRivalry.response;
-      const json = await body.json();
-      // @ts-ignore
-      const rivalry = json[0] as Rivalry;
+      const roundsData = await getRounds();
+      console.log(roundsData);
 
-      setRivalry(rivalry);
-    } catch (error) {
-      console.log('GET call failed: ', error);
+      setRivalry(rivalryData);
+      setRounds(roundsData);
+    } catch (e) {
+      console.log(`ERROR: ${e}`);
     }
   };
 
   useEffect(() => {
-    getRivalry();
+    fetchRivalryData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -51,11 +49,11 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
               </tr>
             </thead>
             <tbody>
-              {rivalry.rounds.map((round, index) => {
+              {rounds.map((round, index) => {
                 return (
                   <tr key={index} className='  odd:bg-green-300 even:text-black p-4 rounded-lg'>
                     <td className='whitespace-nowrap px-6 py-4 font-medium'>{index + 1}</td>
-                    <td className='whitespace-nowrap px-6 py-4'>{round}</td>
+                    <td className='whitespace-nowrap px-6 py-4'>{round.course}</td>
                   </tr>
                 );
               })}
