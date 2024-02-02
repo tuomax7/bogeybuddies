@@ -3,6 +3,12 @@ export interface RoundInput {
   date: string;
 }
 
+export interface ScoreInput {
+  uuid: string;
+  name: string;
+  points: number;
+}
+
 export interface Round {
   RID: string;
   course: string;

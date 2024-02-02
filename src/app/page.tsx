@@ -3,12 +3,9 @@
 import React, { useEffect, useState, FC, SyntheticEvent } from 'react';
 import { post } from 'aws-amplify/api';
 import apiName from '../apiName';
+import { ScoreInput } from '@/types';
 
-interface ScoreInput {
-  uuid: string;
-  name: string;
-  points: number;
-}
+import { postRound } from '@/services/roundService';
 
 const App = () => {
   const [courseNameInput, setCourseNameInput] = useState<string>('');
@@ -34,20 +31,7 @@ const App = () => {
     e.preventDefault();
 
     try {
-      const sortedScores = [...scoresInput].sort((s1, s2) => s2.points - s1.points);
-      const players = scoresInput.map(score => score.uuid);
-      await post({
-        apiName,
-        path: '/rounds',
-        options: {
-          body: {
-            course: courseNameInput,
-            date: roundDateInput,
-            scores: JSON.stringify(sortedScores),
-            players: JSON.stringify(players)
-          }
-        }
-      });
+      postRound(scoresInput, courseNameInput, roundDateInput);
 
       setCourseNameInput('');
       setRoundDateInput('');

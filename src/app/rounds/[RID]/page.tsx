@@ -4,6 +4,8 @@ import React, { useEffect, useState, FC } from 'react';
 import { Round } from '@/types';
 import { getRound } from '@/services/roundService';
 
+import { dateToReadable } from '@/utils';
+
 const RoundPage = ({ params }: { params: { RID: string } }) => {
   const roundID = params.RID;
   const [round, setRound] = useState<Round>();
@@ -20,7 +22,7 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
       {round && (
         <div className=' flex flex-col'>
           <h2 className='text-2xl'>{round.course}</h2>
-          <p className='text-xl'>{round.date}</p>
+          <p className='text-xl'>{dateToReadable(round.date)}</p>
           <table className='my-2 text-lg'>
             <thead>
               <tr>

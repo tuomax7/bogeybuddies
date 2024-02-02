@@ -38,10 +38,11 @@ const RivalriesPage = () => {
       <table>
         <tbody>
           {rivalries.map(rivalry => (
-            <tr key={rivalry.RivID}>
-              <td className=' border-4 odd:bg-green-300 even:text-black p-4 rounded-lg'>
+            <tr key={rivalry.RivID} className=' border-4 odd:bg-green-300 even:text-black rounded-lg'>
+              <td className='p-4'>
                 <Link href={`/rivalries/${rivalry.RivID}`}>{rivalry.name}</Link>
               </td>
+              <td className=' p-4'>{rivalry.players.join(', ')}</td>
             </tr>
           ))}
         </tbody>

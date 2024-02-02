@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Rivalry, Round } from '@/types';
 import { getRivalry } from '@/services/rivalryService';
 import { getRounds } from '@/services/roundService';
+import { dateToReadable } from '@/utils';
 
 const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
   const rivalryID = params.RivID;
@@ -36,14 +37,28 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
           <h2 className='text-2xl'>{rivalry.name}</h2>
           <p className='text-xl'>{rivalry.players.join(', ')}</p>
           <table>
+            <thead>
+              <th>Round</th>
+              <th>Date</th>
+              {rivalry.players.map(player => (
+                <th key={player}>{player}</th>
+              ))}
+            </thead>
             <tbody>
               {rounds.map(round => (
-                <tr key={round.RID}>
-                  <td className=' border-4 odd:bg-green-300 even:text-black p-4 rounded-lg'>
-                    <Link href={`/rounds/${round.RID}`}>
-                      {round.course} on {round.date}
-                    </Link>
+                <tr key={round.RID} className=' border-4 odd:bg-green-300 even:text-black rounded-lg'>
+                  <td className='p-4'>
+                    <Link href={`/rounds/${round.RID}`}>{round.course}</Link>
                   </td>
+                  <td className='p-4'>{dateToReadable(round.date)}</td>
+                  {round.scores.map(
+                    score =>
+                      rivalry.players.includes(score.name) && (
+                        <td className='p-4' key={score.uuid}>
+                          {score.points}
+                        </td>
+                      )
+                  )}
                 </tr>
               ))}
             </tbody>
