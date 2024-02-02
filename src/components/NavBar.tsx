@@ -17,7 +17,7 @@ const NavBar: FC = () => {
         Rivalries
       </Link>
       <Link href='/rounds' className='text-xl'>
-        Rounds
+        My Rounds
       </Link>
       <button onClick={() => signOut()} className='border-2 p-2'>
         Sign out

@@ -9,12 +9,10 @@ const RoundsPage = () => {
   const [rounds, setRounds] = useState<Round[]>([]);
 
   useEffect(() => {
-    getRounds()
+    getRounds(['Tuomas']) // NEEDS TO BE REPLACED WITH CURRENT USER UUID
       .then(data => setRounds(data))
       .catch(e => console.log(`ERROR: ${e}`));
   }, []);
-
-  console.log(rounds);
 
   return (
     <div className='space-y-2'>

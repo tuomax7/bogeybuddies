@@ -35,6 +35,7 @@ const App = () => {
 
     try {
       const sortedScores = [...scoresInput].sort((s1, s2) => s2.points - s1.points);
+      const players = scoresInput.map(score => score.uuid);
       await post({
         apiName,
         path: '/rounds',
@@ -42,7 +43,8 @@ const App = () => {
           body: {
             course: courseNameInput,
             date: roundDateInput,
-            scores: JSON.stringify(sortedScores)
+            scores: JSON.stringify(sortedScores),
+            players: JSON.stringify(players)
           }
         }
       });

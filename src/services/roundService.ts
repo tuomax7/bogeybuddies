@@ -1,16 +1,15 @@
 import { get } from 'aws-amplify/api';
 import apiName from '@/apiName';
 
-export const getRounds = async () => {
+export const getRounds = async (players?: string[]) => {
+  const playerQueries = players ? '?players=' + players.join(',') : '';
   const getRounds = get({
     apiName,
-    path: '/rounds'
+    path: '/rounds' + playerQueries
   });
 
   const { body } = await getRounds.response;
   const json = await body.json();
-
-  console.log(json);
 
   // @ts-ignore
   const rounds = json as Round[];

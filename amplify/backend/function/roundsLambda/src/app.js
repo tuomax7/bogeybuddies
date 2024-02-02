@@ -33,7 +33,16 @@ app.get('/rounds', async function (req, res) {
 
   try {
     const data = await ddbDocClient.send(new ScanCommand(params));
-    res.json(data.Items);
+    let rounds = data.Items;
+
+    if (req.query.players) {
+      const players = req.query.players.split(',');
+
+      const checkForPlayers = arr => players.every(p => arr.includes(p));
+      rounds = rounds.filter(round => checkForPlayers(round.players));
+    }
+
+    res.json(rounds);
   } catch (err) {
     res.statusCode = 500;
     res.json({ error: 'Could not load items: ' + err.message });
@@ -74,7 +83,8 @@ app.post('/rounds', async function (req, res) {
     RID: uuidv4(),
     course: req.body.course,
     date: req.body.date,
-    scores: JSON.parse(req.body.scores)
+    scores: JSON.parse(req.body.scores),
+    players: JSON.parse(req.body.players)
   };
 
   const putItemParams = {
