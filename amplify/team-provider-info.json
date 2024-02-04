@@ -20,7 +20,7 @@
         },
         "rivalriesLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",
-          "s3Key": "amplify-builds/rivalriesLambda-38674f54716459654533-build.zip"
+          "s3Key": "amplify-builds/rivalriesLambda-6d775845383955666c39-build.zip"
         },
         "usersLambda": {
           "deploymentBucketName": "amplify-bogeybuddies-dev-144008-deployment",

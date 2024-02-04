@@ -1,10 +1,12 @@
 import { get } from 'aws-amplify/api';
 import apiName from '@/apiName';
 
-export const getRivalries = async () => {
+export const getRivalries = async (player?: string) => {
+  const playerQuery = player ? `?player=${player}` : '';
+
   const getRivalries = get({
     apiName,
-    path: '/rivalries'
+    path: '/rivalries' + playerQuery
   });
 
   const { body } = await getRivalries.response;

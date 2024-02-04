@@ -32,7 +32,14 @@ app.get('/rivalries', async function (req, res) {
 
   try {
     const data = await ddbDocClient.send(new ScanCommand(params));
-    res.json(data.Items);
+    let rivalries = data.Items;
+
+    if (req.query.player) {
+      const checkForPlayer = arr => arr.includes(req.query.player);
+      rivalries = rivalries.filter(rivalry => checkForPlayer(rivalry.players));
+    }
+
+    res.json(rivalries);
   } catch (err) {
     res.statusCode = 500;
     res.json({ error: 'Could not load items: ' + err.message });

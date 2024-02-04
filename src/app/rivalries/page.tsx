@@ -2,10 +2,13 @@
 
 import React, { useEffect, useState, FC } from 'react';
 import Link from 'next/link';
+import { getCurrentUser } from 'aws-amplify/auth';
 import { Rivalry, User } from '@/types';
 
 import { getRivalries } from '@/services/rivalryService';
 import { getUsers } from '@/services/userService';
+
+import { getNamesByUIDs } from '@/utils';
 
 const RivalriesPage = () => {
   const [rivalries, setRivalries] = useState<Rivalry[]>([]);
@@ -13,7 +16,9 @@ const RivalriesPage = () => {
 
   const fetchRivalries = async () => {
     try {
-      const fetchedRivalries = await getRivalries();
+      const { userId } = await getCurrentUser();
+
+      const fetchedRivalries = await getRivalries(userId);
 
       const playerUIDs = fetchedRivalries.map(rivalry => rivalry.players).flat();
 
@@ -30,7 +35,10 @@ const RivalriesPage = () => {
     fetchRivalries();
   }, []);
 
-  console.log(players);
+  const playerFirstNameString = (rivalry: Rivalry) =>
+    getNamesByUIDs(rivalry.players, players)
+      .map(name => name.firstname)
+      .join(', ');
 
   return (
     <div className='space-y-2'>
@@ -43,7 +51,7 @@ const RivalriesPage = () => {
               <td className='p-4'>
                 <Link href={`/rivalries/${rivalry.RivID}`}>{rivalry.name}</Link>
               </td>
-              <td className=' p-4'>{rivalry.players.join(', ')}</td>
+              <td className=' p-4'>{playerFirstNameString(rivalry)}</td>
             </tr>
           ))}
         </tbody>

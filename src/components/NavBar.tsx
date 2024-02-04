@@ -6,7 +6,7 @@ import { signOut } from 'aws-amplify/auth';
 
 const NavBar: FC = () => {
   return (
-    <div className='flex flex-row bg-green-800 text-white w-full p-4 space-x-4'>
+    <div className='flex flex-row bg-green-800 text-white w-full p-4 space-x-4 items-center'>
       <h1 className='text-2xl flex-grow'>
         <Link href='/'>BogeyBuddies</Link>
       </h1>
