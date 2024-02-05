@@ -6,11 +6,13 @@ import { Round, User } from '@/types';
 import { getRounds } from '@/services/roundService';
 import { getUserByUID } from '@/services/userService';
 
+import { TableRow, TableData } from '@/components/TableRow';
+
 import { dateToReadable } from '@/utils';
 
 import { getCurrentUser } from 'aws-amplify/auth';
 
-const RoundsPage = () => {
+const RoundsPage: FC = () => {
   const [user, setUser] = useState<User>();
   const [rounds, setRounds] = useState<Round[]>([]);
 
@@ -50,13 +52,13 @@ const RoundsPage = () => {
         </thead>
         <tbody>
           {rounds.map(round => (
-            <tr key={round.RID} className=' border-4 odd:bg-green-300 even:text-black p-4 rounded-lg'>
-              <td className='p-4'>
+            <TableRow key={round.RID}>
+              <TableData>
                 <Link href={`/rounds/${round.RID}`}>{round.course}</Link>
-              </td>
-              <td className='p-4'>{dateToReadable(round.date)}</td>
-              <td className='p-4'>{getScore(round)?.points}</td>
-            </tr>
+              </TableData>
+              <TableData>{dateToReadable(round.date)}</TableData>
+              <TableData>{getScore(round)?.points || ''}</TableData>
+            </TableRow>
           ))}
         </tbody>
       </table>

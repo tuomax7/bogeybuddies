@@ -2,11 +2,15 @@
 
 import React, { useEffect, useState, FC } from 'react';
 import Link from 'next/link';
-import { Rivalry, Round, User } from '@/types';
+import { Rivalry, Round, User, Score } from '@/types';
 import { getRivalry } from '@/services/rivalryService';
 import { getRounds } from '@/services/roundService';
 import { getUsers } from '@/services/userService';
 import { dateToReadable } from '@/utils';
+
+import { getNamesByUIDs } from '@/utils';
+
+import { TableRow, TableData } from '@/components/TableRow';
 
 const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
   const rivalryID = params.RivID;
@@ -37,6 +41,17 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getPlayerNameSortedScores = (scores: Score[], rivalry: Rivalry) => {
+    const filteredScores = scores.filter(score => rivalry.players.includes(score.uuid));
+    const sortedScores = [...filteredScores].sort((s1, s2) => {
+      const scorename1 = getNamesByUIDs([s1.uuid], players)[0].firstname;
+      const scorename2 = getNamesByUIDs([s2.uuid], players)[0].firstname;
+      return scorename1.localeCompare(scorename2);
+    });
+
+    return sortedScores;
+  };
+
   const playerNameString = players && players.map(player => player.firstname + ' ' + player.lastname).join(', ');
 
   return (
@@ -51,27 +66,26 @@ const Rivalrypage = ({ params }: { params: { RivID: string } }) => {
               <tr>
                 <th>Round</th>
                 <th>Date</th>
-                {players.map(player => (
-                  <th key={player.UID}>{player.firstname}</th>
-                ))}
+                {[...players]
+                  .sort((p1, p2) => p1.firstname.localeCompare(p2.firstname))
+                  .map(player => (
+                    <th key={player.UID}>{player.firstname}</th>
+                  ))}
               </tr>
             </thead>
             <tbody>
               {rounds.map(round => (
-                <tr key={round.RID} className=' border-4 odd:bg-green-300 even:text-black rounded-lg'>
-                  <td className='p-4'>
-                    <Link href={`/rounds/${round.RID}`}>{round.course}</Link>
-                  </td>
-                  <td className='p-4'>{dateToReadable(round.date)}</td>
-                  {round.scores.map(
-                    score =>
-                      rivalry.players.includes(score.uuid) && (
-                        <td className='py-4 px-8' key={score.uuid}>
-                          {score.points}
-                        </td>
-                      )
-                  )}
-                </tr>
+                <TableRow key={round.RID}>
+                  <>
+                    <TableData>
+                      <Link href={`/rounds/${round.RID}`}>{round.course}</Link>
+                    </TableData>
+                    <TableData>{dateToReadable(round.date)}</TableData>
+                    {getPlayerNameSortedScores(round.scores, rivalry).map(score => (
+                      <TableData key={score.uuid}>{score.points}</TableData>
+                    ))}
+                  </>
+                </TableRow>
               ))}
             </tbody>
           </table>

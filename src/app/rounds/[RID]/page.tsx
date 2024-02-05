@@ -5,6 +5,8 @@ import { Round, ScoreInput, User } from '@/types';
 import { getRound } from '@/services/roundService';
 import { getUsers } from '@/services/userService';
 
+import { TableRow, TableData } from '@/components/TableRow';
+
 import { dateToReadable, getNamesByUIDs } from '@/utils';
 
 const RoundPage = ({ params }: { params: { RID: string } }) => {
@@ -60,11 +62,11 @@ const RoundPage = ({ params }: { params: { RID: string } }) => {
             <tbody>
               {round.scores.map((score, index) => {
                 return (
-                  <tr key={index} className='  odd:bg-green-300 even:text-black p-4 rounded-lg'>
-                    <td className='whitespace-nowrap px-6 py-4 font-medium'>{index + 1}</td>
-                    <td className='whitespace-nowrap px-6 py-4'>{getPlayerName(score.uuid)}</td>
-                    <td className='whitespace-nowrap px-6 py-4'>{score.points}</td>
-                  </tr>
+                  <TableRow key={index}>
+                    <TableData>{index + 1}</TableData>
+                    <TableData>{getPlayerName(score.uuid)}</TableData>
+                    <TableData>{score.points}</TableData>
+                  </TableRow>
                 );
               })}
             </tbody>

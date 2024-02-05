@@ -5,7 +5,11 @@ export interface RoundInput {
 
 export interface ScoreInput {
   uuid: string;
-  name: string;
+  points: number;
+}
+
+export interface Score {
+  uuid: string;
   points: number;
 }
 
@@ -13,10 +17,7 @@ export interface Round {
   RID: string;
   course: string;
   date: string;
-  scores: {
-    uuid: string;
-    points: number;
-  }[];
+  scores: Score[];
 }
 
 export interface Rivalry {

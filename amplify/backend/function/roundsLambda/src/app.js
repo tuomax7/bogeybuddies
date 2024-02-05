@@ -41,8 +41,8 @@ app.get('/rounds', async function (req, res) {
       const checkForPlayers = arr => players.every(p => arr.includes(p));
       rounds = rounds.filter(round => checkForPlayers(round.players));
     }
-
-    res.json(rounds);
+    const dateSortedRounds = [...rounds].sort((r1, r2) => new Date(r2.date) - new Date(r1.date));
+    res.json(dateSortedRounds);
   } catch (err) {
     res.statusCode = 500;
     res.json({ error: 'Could not load items: ' + err.message });

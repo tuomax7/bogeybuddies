@@ -8,6 +8,8 @@ import { Rivalry, User } from '@/types';
 import { getRivalries } from '@/services/rivalryService';
 import { getUsers } from '@/services/userService';
 
+import { TableRow, TableData } from '@/components/TableRow';
+
 import { getNamesByUIDs } from '@/utils';
 
 const RivalriesPage = () => {
@@ -47,12 +49,12 @@ const RivalriesPage = () => {
       <table>
         <tbody>
           {rivalries.map(rivalry => (
-            <tr key={rivalry.RivID} className=' border-4 odd:bg-green-300 even:text-black rounded-lg'>
-              <td className='p-4'>
+            <TableRow key={rivalry.RivID}>
+              <TableData>
                 <Link href={`/rivalries/${rivalry.RivID}`}>{rivalry.name}</Link>
-              </td>
-              <td className=' p-4'>{playerFirstNameString(rivalry)}</td>
-            </tr>
+              </TableData>
+              <TableData>{playerFirstNameString(rivalry)}</TableData>
+            </TableRow>
           ))}
         </tbody>
       </table>
