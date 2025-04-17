@@ -1,0 +1,36 @@
+name: TypeScript Build Check
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install server dependencies
+        run: npm install
+
+      - name: Check tsc for server
+        run: npx tsc --noEmit
+
+      - name: Install client dependencies
+        working-directory: ./client
+        run: npm install
+
+      - name: Check tsc for client
+        working-directory: ./client
+        run: npx tsc --noEmit

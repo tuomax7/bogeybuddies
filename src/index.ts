@@ -1,4 +1,4 @@
-const path = require("path");
+import { Request, Response } from "express";
 
 const express = require("express");
 const app = express();
@@ -8,7 +8,7 @@ app.use(express.static("client/dist"));
 
 const port = process.env.PORT || 8080;
 
-app.get("/api", function (req, res) {
+app.get("/api", (req: Request, res: Response) => {
   res.json({ data: "dataa" });
 });
 
