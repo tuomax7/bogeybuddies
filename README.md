@@ -21,7 +21,8 @@ Table of contents:
 
 ## Links
 
-- [Web Application GUI (dev)](https://bogeybuddies-362350447599.europe-north1.run.app/)
+- [Web Application GUI (dev)](https://bogeybuddies-dev-362350447599.europe-north1.run.app)
+- [Web Application GUI (prod)](https://bogeybuddies-prod-362350447599.europe-north1.run.app)
 
 ## Usage
 
@@ -29,7 +30,7 @@ Table of contents:
 
 ### Internationalization
 
-[Lingui](https://lingui.dev/) is used as the i18n library of choise.
+[Lingui](https://lingui.dev/) is used as the i18n library of choice.
 
 #### TLDR:
 
