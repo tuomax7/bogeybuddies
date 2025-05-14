@@ -1,7 +1,7 @@
 const App = () => {
   return (
     <>
-      <h1>BogeyBuddies app</h1>
+      <h1>BogeyBuddies - an app for tracking golf scores</h1>
     </>
   );
 };
