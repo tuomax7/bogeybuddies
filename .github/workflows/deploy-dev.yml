@@ -49,7 +49,6 @@ jobs:
 
       - name: Push Image to Google Container Registry
         run: |
-          docker tag bogeybuddies-server gcr.io/bogeybuddies-457015/bogeybuddies-server:latest
           docker push gcr.io/bogeybuddies-457015/bogeybuddies-server:latest
 
       - name: Deploy to Cloud Run
