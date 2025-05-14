@@ -19,14 +19,14 @@ jobs:
           node-version: 20
 
       - name: Install server dependencies
-        run: npm install
+        run: npm ci
 
       - name: Check tsc for server
         run: npx tsc --noEmit
 
       - name: Install client dependencies
         working-directory: ./client
-        run: npm install
+        run: npm ci
 
       - name: Check tsc for client
         working-directory: ./client
