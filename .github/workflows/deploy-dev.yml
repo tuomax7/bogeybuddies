@@ -35,7 +35,7 @@ jobs:
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: ${{ secrets.GCP_PROJECT }}
+          project_id: bogeybuddies-457015
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
@@ -49,9 +49,9 @@ jobs:
 
       - name: Push Image to Google Container Registry
         run: |
-          docker tag bogeybuddies-server gcr.io/${{ secrets.GCP_PROJECT }}/bogeybuddies-server:latest
-          docker push gcr.io/${{ secrets.GCP_PROJECT }}/bogeybuddies-server:latest
+          docker tag bogeybuddies-server gcr.io/bogeybuddies-457015/bogeybuddies-server:latest
+          docker push gcr.io/bogeybuddies-457015/bogeybuddies-server:latest
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy bogeybuddies --image gcr.io/${{ secrets.GCP_PROJECT }}/bogeybuddies-server:latest
+          gcloud run deploy bogeybuddies --image gcr.io/bogeybuddies-457015/bogeybuddies-server:latest
