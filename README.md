@@ -10,6 +10,7 @@ Table of contents:
   - [Deployment and CI/CD](#deployment-and-cicd)
   - [Internationalization](#internationalization)
   - [Conventions](#conventions)
+  - [Credits](#credits)
 
 ## Links
 
@@ -44,3 +45,7 @@ Upon pushing to `dev` or `main` branches, a Google Cloud Build Trigger activates
 ## Conventions
 
 I am using [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
+
+## Credits
+
+These documentation and pull request templates are from the [full-stack-template by Taito United](https://github.com/TaitoUnited/full-stack-template)
